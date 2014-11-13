@@ -11,6 +11,7 @@
                     <tr>
                         <th>Host</th>
                         <th>Type</th>
+                        <th>vCenter</th>
                         <th>Username</th>
                         <th>Active</th>
                         <th style="width:20px">Actions</th>
@@ -20,10 +21,13 @@
                     <tr ng-repeat="obj in objs">
                         <td>
                             <a class="nounderline"
-                               href="#/host/obj.id">{{obj.host}}</a>
+                               href="#/host/{{obj.id}}">{{obj.host}}</a>
                         </td>
                         <td>
                             {{obj.hostType}}
+                        </td>
+                        <td>
+                            {{obj.vcenter.host}}
                         </td>
                         <td>
                             {{obj.username}}

@@ -128,9 +128,10 @@ scotchApp.controller('hostController', function ($scope, Host) {
     $scope.objs = Host.query();
 });
 
-scotchApp.controller('hostEditController', function ($scope, $routeParams, Host, $window) {
+scotchApp.controller('hostEditController', function ($scope, $routeParams, Host, VCenter, $window) {
     $scope.message = 'Look! I am an hostEditController page.';
     $scope.obj = new Host();
+    $scope.vcs = VCenter.query();
     $scope.params = $routeParams;
 
     $scope.loadHost = function () {
