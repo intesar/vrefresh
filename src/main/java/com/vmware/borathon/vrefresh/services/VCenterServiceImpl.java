@@ -22,16 +22,21 @@ import com.vmware.borathon.vrefresh.repository.VCenterRepository;
 @Transactional
 public class VCenterServiceImpl implements VCenterService {
 
-	@Autowired
-	private VCenterRepository vCenterRepository;
+    @Autowired
+    private VCenterRepository vCenterRepository;
 
-	@Override
-	public VCenter create(VCenter person) {
-		return vCenterRepository.save(person);
-	}
+    @Override
+    public VCenter create(VCenter person) {
+        return vCenterRepository.save(person);
+    }
 
-	@Override
-	public List<VCenter> getAll() {
-		return vCenterRepository.findAll();
-	}
+    @Override
+    public List<VCenter> getAll() {
+        return vCenterRepository.findAll();
+    }
+
+    @Override
+    public VCenter findById(Long id) {
+        return vCenterRepository.findOne(id);
+    }
 }

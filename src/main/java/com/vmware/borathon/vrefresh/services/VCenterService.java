@@ -15,8 +15,10 @@ import com.vmware.borathon.vrefresh.entity.VCenter;
  */
 public interface VCenterService {
 
-	VCenter create(VCenter person);
+    VCenter create(VCenter person);
 
-	List<VCenter> getAll();
+    List<VCenter> getAll();
+
+    public VCenter findById(Long id);
 
 }

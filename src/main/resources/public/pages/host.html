@@ -1,0 +1,46 @@
+<div class="bg-light1 lter1 b-b1 wrapper-md">
+    <h2 class="m-n font-thin1 h4">Hosts 
+        <a class="pull-right" href="#/host/new"> <i class="fa fa-plus"></i></a>
+    </h2>
+</div>
+<div class="wrapper-md1">
+    <div class="panel panel-default">
+        <div class="table-responsive">
+            <table ui-jq="dataTable" class="table table-striped bg-white b-a">
+                <thead>
+                    <tr>
+                        <th>Host</th>
+                        <th>Type</th>
+                        <th>Username</th>
+                        <th>Active</th>
+                        <th style="width:20px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="obj in objs">
+                        <td>
+                            <a class="nounderline"
+                               href="#/host/obj.id">{{obj.host}}</a>
+                        </td>
+                        <td>
+                            {{obj.hostType}}
+                        </td>
+                        <td>
+                            {{obj.username}}
+                        </td>
+                        <td>
+                            <i class="fa fa-check text-success"></i>
+                        </td>
+                        <td class="">
+                            <a class="" data-toggle="tooltip"
+                               data-placement="top" title="Tooltip on top"
+                               href="#/host/{{obj.id}}"><i
+                                    class="glyphicon glyphicon-pencil"></i>
+                            </a> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

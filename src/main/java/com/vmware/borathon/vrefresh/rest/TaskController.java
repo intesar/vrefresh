@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vmware.borathon.vrefresh.entity.Task;
+import com.vmware.borathon.vrefresh.entity.VCenter;
 import com.vmware.borathon.vrefresh.services.TaskService;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -23,16 +25,26 @@ import com.vmware.borathon.vrefresh.services.TaskService;
 @RestController()
 public class TaskController {
 
-	@Autowired
-	private TaskService personService;
+    @Autowired
+    private TaskService personService;
 
-	@RequestMapping(value = "/tasks", method = RequestMethod.GET)
-	public List<Task> getAll() {
-		return personService.getAll();
-	}
+    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
+    public List<Task> getAll() {
+        return personService.getAll();
+    }
 
-	@RequestMapping(value = "/tasks", method = RequestMethod.POST)
-	public Task create(@RequestBody Task person) {
-		return personService.create(person);
-	}
+    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET)
+    public Task findById(@PathVariable("id") Long id) {
+        return personService.findById(id);
+    }
+
+    @RequestMapping(value = "/tasks", method = RequestMethod.POST)
+    public Task create(@RequestBody Task person) {
+        return personService.create(person);
+    }
+
+    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.PUT)
+    public Task update(@RequestBody Task request) {
+        return personService.create(request);
+    }
 }

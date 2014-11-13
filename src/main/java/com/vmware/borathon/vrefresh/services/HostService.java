@@ -20,4 +20,6 @@ public interface HostService {
 
 	List<Host> getAll();
 
+    public Host findById(Long id);
+
 }

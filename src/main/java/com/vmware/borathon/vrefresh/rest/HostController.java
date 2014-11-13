@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vmware.borathon.vrefresh.entity.Host;
+import com.vmware.borathon.vrefresh.entity.Task;
+import com.vmware.borathon.vrefresh.entity.VCenter;
 import com.vmware.borathon.vrefresh.services.HostService;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -34,5 +37,15 @@ public class HostController {
     @RequestMapping(value = "/hosts", method = RequestMethod.POST)
     public Host create(@RequestBody Host person) {
         return personService.create(person);
+    }
+
+    @RequestMapping(value = "/hosts/{id}", method = RequestMethod.GET)
+    public Host findById(@PathVariable("id") Long id) {
+        return personService.findById(id);
+    }
+
+    @RequestMapping(value = "/hosts/{id}", method = RequestMethod.PUT)
+    public Host update(@RequestBody Host request) {
+        return personService.create(request);
     }
 }

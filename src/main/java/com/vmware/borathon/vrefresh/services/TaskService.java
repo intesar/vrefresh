@@ -8,6 +8,7 @@ package com.vmware.borathon.vrefresh.services;
 import java.util.List;
 
 import com.vmware.borathon.vrefresh.entity.Task;
+import com.vmware.borathon.vrefresh.entity.VCenter;
 
 /**
  *
@@ -15,8 +16,10 @@ import com.vmware.borathon.vrefresh.entity.Task;
  */
 public interface TaskService {
 
-	Task create(Task person);
+    Task create(Task person);
 
-	List<Task> getAll();
+    List<Task> getAll();
+
+    public Task findById(Long id);
 
 }

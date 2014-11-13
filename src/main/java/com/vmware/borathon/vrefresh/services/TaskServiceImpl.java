@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vmware.borathon.vrefresh.entity.Task;
+import com.vmware.borathon.vrefresh.entity.VCenter;
 import com.vmware.borathon.vrefresh.repository.TaskRepository;
 
 /**
@@ -22,16 +23,21 @@ import com.vmware.borathon.vrefresh.repository.TaskRepository;
 @Transactional
 public class TaskServiceImpl implements TaskService {
 
-	@Autowired
-	private TaskRepository vCenterRepository;
+    @Autowired
+    private TaskRepository vCenterRepository;
 
-	@Override
-	public Task create(Task person) {
-		return vCenterRepository.save(person);
-	}
+    @Override
+    public Task create(Task person) {
+        return vCenterRepository.save(person);
+    }
 
-	@Override
-	public List<Task> getAll() {
-		return vCenterRepository.findAll();
-	}
+    @Override
+    public List<Task> getAll() {
+        return vCenterRepository.findAll();
+    }
+
+    @Override
+    public Task findById(Long id) {
+        return vCenterRepository.findOne(id);
+    }
 }
