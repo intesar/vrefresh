@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- *
+ * 
  * @author mdshannan
  */
 @Entity
@@ -23,6 +23,7 @@ public class Task implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	private String name;
 	private String taskType;
 	private String scheduleDateTime;
 	private String script;
@@ -35,6 +36,14 @@ public class Task implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTaskType() {

@@ -9,6 +9,7 @@
             <table ui-jq="dataTable" class="table table-striped bg-white b-a">
                 <thead>
                     <tr>
+                    	<th>Name</th>
                         <th>Type</th>
                         <th>Date/Time</th>
                         <th>Script</th>
@@ -18,9 +19,12 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="obj in objs">
-                        <td>
+                    	<td>
                             <a class="nounderline"
-                               href="#/task/{{obj.id}}">{{obj.taskType}}</a>
+                               href="#/task/{{obj.id}}">{{obj.name}}</a>
+                        </td>
+                        <td>
+                            {{obj.taskType}}
                         </td>
                         <td>
                             {{obj.scheduleDateTime}}
