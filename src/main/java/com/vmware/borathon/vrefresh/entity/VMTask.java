@@ -41,6 +41,15 @@ public class VMTask implements Serializable {
 	private Date startTime;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endTime;
+	private String log;
+
+	public String getLog() {
+		return log;
+	}
+
+	public void setLog(String log) {
+		this.log = log;
+	}
 
 	public Long getId() {
 		return id;

@@ -1,0 +1,81 @@
+<div class="jumbotron text-center">
+	<h1>Create/Update Schedule</h1>
+	<p>
+		<br />
+	<form class="form-horizontal" role="form" ng-submit="updateSchedule()"
+		name="form" novalidate>
+
+
+		<div class="form-group">
+			<label for="name" class="col-sm-4 control-label">Name</label>
+			<div class="col-sm-4">
+				<input type="text" ng-model="obj.name" class="form-control"
+					id="title" placeholder="name" name="name" required />
+			</div>
+		</div>
+		<div class="form-group"
+			ng-class="{ 'has-error' : form.dc.$invalid && !form.dc.$pristine }">
+			<label for="vc" class="col-sm-4 control-label">VM/Template</label>
+			<div class="col-sm-4">
+				<select ng-model="obj.host.id" class="form-control"
+					ng-options="vm.id as vm.host for vm in vms" name="vc" required>
+				</select>
+			</div>
+		</div>
+		<div class="form-group"
+			ng-class="{ 'has-error' : form.dc.$invalid && !form.dc.$pristine }">
+			<label for="vc" class="col-sm-4 control-label">Script</label>
+			<div class="col-sm-4">
+				<select ng-model="obj.task.id" class="form-control"
+					ng-options="s.id as s.name for s in scripts" name="vc" required>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Description" class="col-sm-4 control-label">Recurring</label>
+			<div class="col-sm-4">
+				<input type="text" ng-model="obj.recurring" class="form-control"
+					id="title" placeholder="true or false" name="name" required />
+			</div>
+		</div>
+
+
+		<div class="form-group"
+			ng-class="{ 'has-error' : form.dc.$invalid && !form.dc.$pristine }">
+			<label for="vc" class="col-sm-4 control-label">Day</label>
+			<div class="col-sm-4">
+				<select ng-model="obj.day" class="form-control" required>
+					<option value="1">Sunday</option>
+					<option value="2">Monday</option>
+					<option value="3">Tuesday</option>
+					<option value="4">Wednesday</option>
+					<option value="5">Thursday</option>
+					<option value="6">Friday</option>
+					<option value="7">Saturday</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group"
+			ng-class="{ 'has-error' : form.dc.$invalid && !form.dc.$pristine }">
+			<label for="vc" class="col-sm-4 control-label">Time</label>
+			<div class="col-sm-4">
+				<input type="text" ng-model="obj.dayTime" class="form-control"
+					id="title" placeholder="0 to 2400" name="name" required />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-4 control-label"></label>
+			<div class="col-sm-4">
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-check fa-fw"></i>&nbsp; Save
+				</button>
+				<a class="btn btn-default" href="#/schedule"><i class="fa fa-times1"></i>
+					&nbsp; Cancel</a>
+			</div>
+		</div>
+	</form>
+	</p>
+
+</div>

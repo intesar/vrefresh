@@ -46,16 +46,19 @@ public class VMTaskScheduleServiceImpl implements VMTaskScheduleService {
         return vCenterRepository.findOne(id);
     }
     
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 1000 * 50)
     public void processSchedule() {
     	System.out.println("schedular fired");
     	
     	String day = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
     	int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) * 100;
     	String dayTime = String.valueOf(hour + Calendar.getInstance().get(Calendar.MINUTE));
+    	System.out.println("day : " + day + " hour : " + hour + " time: " + dayTime);
     	List<VMTaskSchedule>  list = vCenterRepository.findByDayAndDayTime(day, dayTime);
+    	System.out.println("list size: " + list.size());
     	
     	for (VMTaskSchedule l : list) {
+    		System.out.println("processing " + l.toString());
     		VMTask task = new VMTask();
     		task.setHost(l.getHost());
     		task.setTask(l.getTask());

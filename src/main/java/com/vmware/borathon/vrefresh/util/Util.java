@@ -24,7 +24,7 @@ import com.vmware.borathon.vrefresh.entity.VMTask;
 import com.vmware.borathon.vrefresh.repository.TaskRepository;
 
 public class Util {
-	
+
 	@Autowired
 	TaskRepository taskRepo;
 
@@ -45,36 +45,35 @@ public class Util {
 		}
 	}
 
-	public static void runLinuxCommand(VMTask vmTask)
-			throws Exception {
+	public static void runLinuxCommand(VMTask vmTask) throws Exception {
 
-		// set the start-time, end-time, error, result, status (as complete, processing)
-    	// save the task
-		
+		// set the start-time, end-time, error, result, status (as complete,
+		// processing)
+		// save the task
+
 		vmTask.setStartTime(new Date());
 		Host host = vmTask.getHost();
 		Task scriptTask = vmTask.getTask();
 		String logMsg;
-		
+
 		String hostname = host.getHost();
 		String username = host.getUsername();
 		String password = host.getPassword();
-		
+
 		String vCenterHostName = vmTask.getHost().getVcenter().getHost();
 		String vCenterUserName = vmTask.getHost().getVcenter().getUsername();
 		String vCenterPassword = vmTask.getHost().getVcenter().getPassword();
-		
-		/*String hostname = "https://10.20.141.195/sdk";
-		String username = "root";
-		String password = "ca$hc0w";
-		*/
-		//MyVirtualMachine virtualMachine = new MyVirtualMachine(
-		//		new URL(hostname), "Nitro-AppD-2", username, password);
 
-		MyVirtualMachine virtualMachine = new MyVirtualMachine(
-				new URL(vCenterHostName), hostname, vCenterUserName, vCenterPassword);
+		/*
+		 * String hostname = "https://10.20.141.195/sdk"; String username =
+		 * "root"; String password = "ca$hc0w";
+		 */
+		// MyVirtualMachine virtualMachine = new MyVirtualMachine(
+		// new URL(hostname), "Nitro-AppD-2", username, password);
 
-		
+		MyVirtualMachine virtualMachine = new MyVirtualMachine(new URL(
+				vCenterHostName), hostname, vCenterUserName, vCenterPassword);
+
 		SSHExec ssh = null;
 		try {
 
@@ -82,10 +81,10 @@ public class Util {
 			logMsg = "Virtual machine started";
 			System.out.println(logMsg);
 			virtualMachine.waitForGuest();
-			logMsg +=  "\nGuest started";
+			logMsg += "\nGuest started";
 			System.out.println("Guest started");
 			String ipAddress = virtualMachine.getGuestIpAddress();
-			logMsg +=  "\nIp Address is:" + ipAddress;
+			logMsg += "\nIp Address is:" + ipAddress;
 			System.out.println("Ip Address is:" + ipAddress);
 
 			SSHExec.setOption(IOptionName.HALT_ON_FAILURE, true);
@@ -93,24 +92,24 @@ public class Util {
 			SSHExec.setOption(IOptionName.TIMEOUT, 36000l);
 			SSHExec.showEnvConfig();
 
-			ConnBean cb = new ConnBean(ipAddress, username,
-					password);
+			ConnBean cb = new ConnBean(ipAddress, username, password);
 			ssh = SSHExec.getInstance(cb);
 			String scriptContent = scriptTask.getScript();
 			CustomTask task = new ExecCommand(scriptContent);
 			ssh.connect();
 
 			Result taskResult = ssh.exec(task);
-			logMsg +=  "\n" + taskResult.sysout;
-			logMsg +=  "\nReturn code: " + taskResult.rc
-					+ ", error msg: " + taskResult.error_msg;
-			
-			scriptTask.setResult(taskResult.sysout);
-			scriptTask.setTaskStatus("Return code: " + taskResult.rc
+			logMsg += "\n" + taskResult.sysout;
+			logMsg += "\nReturn code: " + taskResult.rc + ", error msg: "
+					+ taskResult.error_msg;
+
+			vmTask.setResult(taskResult.sysout);
+			vmTask.setStatus("Return code: " + taskResult.rc
 					+ ", error msg: " + taskResult.error_msg);
 
 			virtualMachine.shutdown();
-			logMsg +=  "\nGuest shutdown";
+			logMsg += "\nGuest shutdown";
+			vmTask.setLog(logMsg);
 			System.out.println("Guest shutdown");
 
 		} catch (TaskExecFailException e) {
@@ -132,6 +131,6 @@ public class Util {
 		Host host = new Host();
 		Task task = new Task();
 		task.setScript("ls /tmp");
-		//runLinuxCommand(host, task);
+		// runLinuxCommand(host, task);
 	}
 }

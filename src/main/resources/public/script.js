@@ -48,6 +48,18 @@ scotchApp.config(function ($routeProvider) {
                 templateUrl: 'pages/task_edit.html',
                 controller: 'taskEditController'
             })
+            
+            // route for the about page
+            .when('/schedule', {
+                templateUrl: 'pages/schedule.html',
+                controller: 'scheduleController'
+            })
+            
+            // route for the about page
+            .when('/schedule/:id', {
+                templateUrl: 'pages/schedule_edit.html',
+                controller: 'scheduleEditController'
+            })
 
 });
 
@@ -89,6 +101,17 @@ angular.module('scotchApp')
                     });
                 }];
         });
+
+angular.module('scotchApp')
+.provider('Schedule', function () {
+    this.$get = ['$resource', function ($resource) {
+            return $resource('schedules/:id', {id: '@id'}, {
+                update: {
+                    method: 'PUT'
+                }
+            });
+        }];
+});
 
 scotchApp.controller('vcenterController', function ($scope, VCenter) {
     $scope.message = 'Look! I am an vcenterController page.';
@@ -181,6 +204,41 @@ scotchApp.controller('taskEditController', function ($scope, $routeParams, Task,
         } else {
             $scope.obj.$save(function () {
                 $window.location.href = '#/task';
+            });
+        }
+    }
+});
+
+scotchApp.controller('scheduleController', function ($scope, Schedule) {
+    $scope.message = 'Look! I am an scheduleController page.';
+    $scope.objs = Schedule.query();
+});
+
+scotchApp.controller('scheduleEditController', function ($scope, $routeParams, Schedule, Task, Host, $window) {
+    $scope.message = 'Look! I am an scheduleEditController page.';
+    
+    $scope.vms = Host.query();
+    $scope.scripts = Task.query();
+    
+    $scope.obj = new Schedule();
+    $scope.params = $routeParams;
+
+    $scope.loadSchedule = function () {
+    	Schedule.get({id: $scope.params.id}, function (obj) {
+            $scope.obj = obj;
+        });
+    };
+
+    $scope.loadSchedule();
+
+    $scope.updateSchedule = function () {
+        if ($scope.obj.id > 0) {
+            $scope.obj.$update(function () {
+                $window.location.href = '#/schedule';
+            });
+        } else {
+            $scope.obj.$save(function () {
+                $window.location.href = '#/schedule';
             });
         }
     }
