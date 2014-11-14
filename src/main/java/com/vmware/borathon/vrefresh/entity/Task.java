@@ -29,6 +29,15 @@ public class Task implements Serializable {
 	private String script;
 	private String result;
 	private String taskStatus;
+	private String log;
+
+	public String getLog() {
+		return log;
+	}
+
+	public void setLog(String log) {
+		this.log = log;
+	}
 
 	public Long getId() {
 		return id;

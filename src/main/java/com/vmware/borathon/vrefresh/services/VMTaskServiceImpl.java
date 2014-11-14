@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vmware.borathon.vrefresh.entity.Host;
+import com.vmware.borathon.vrefresh.entity.Task;
 import com.vmware.borathon.vrefresh.entity.VMTask;
 import com.vmware.borathon.vrefresh.repository.VMTaskRepository;
+import com.vmware.borathon.vrefresh.util.Util;
 
 /**
  *
@@ -41,9 +44,16 @@ public class VMTaskServiceImpl implements VMTaskService {
     }
     
     @Override
-    public void process(VMTask task) {
+    public void process(VMTask vmTask) {
     	// procces task
     	// set the start-time, end-time, error, result, status (as complete, processing)
     	// save the task
+    	
+		try {
+			Util.runLinuxCommand(vmTask);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    	
     }
 }
