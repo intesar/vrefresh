@@ -23,20 +23,20 @@ import com.vmware.borathon.vrefresh.repository.HostRepository;
 public class HostServiceImpl implements HostService {
 
     @Autowired
-    private HostRepository vCenterRepository;
+    private HostRepository hostRepository;
 
     @Override
     public Host create(Host person) {
-        return vCenterRepository.save(person);
+        return hostRepository.save(person);
     }
 
     @Override
     public List<Host> getAll() {
-        return vCenterRepository.findAll();
+        return hostRepository.findAll();
     }
 
     @Override
     public Host findById(Long id) {
-        return vCenterRepository.findOne(id);
+        return hostRepository.findOne(id);
     }
 }

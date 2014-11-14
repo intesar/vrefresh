@@ -27,24 +27,24 @@ import com.vmware.borathon.vrefresh.repository.VMTaskScheduleRepository;
 public class VMTaskScheduleServiceImpl implements VMTaskScheduleService {
 
 	@Autowired
-	private VMTaskScheduleRepository vCenterRepository;
+	private VMTaskScheduleRepository vMTaskScheduleRepository;
 
 	@Autowired
 	private VMTaskService service;
 
 	@Override
 	public VMTaskSchedule create(VMTaskSchedule person) {
-		return vCenterRepository.save(person);
+		return vMTaskScheduleRepository.save(person);
 	}
 
 	@Override
 	public List<VMTaskSchedule> getAll() {
-		return vCenterRepository.findAll();
+		return vMTaskScheduleRepository.findAll();
 	}
 
 	@Override
 	public VMTaskSchedule findById(Long id) {
-		return vCenterRepository.findOne(id);
+		return vMTaskScheduleRepository.findOne(id);
 	}
 
 	@Async
@@ -64,7 +64,7 @@ public class VMTaskScheduleServiceImpl implements VMTaskScheduleService {
 				+ Calendar.getInstance().get(Calendar.MINUTE));
 		System.out.println("day : " + day + " hour : " + hour + " time: "
 				+ dayTime);
-		List<VMTaskSchedule> list = vCenterRepository.findByDayAndDayTime(day,
+		List<VMTaskSchedule> list = vMTaskScheduleRepository.findByDayAndDayTime(day,
 				dayTime);
 		System.out.println("list size: " + list.size());
 

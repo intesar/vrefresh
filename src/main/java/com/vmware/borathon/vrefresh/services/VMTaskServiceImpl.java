@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vmware.borathon.vrefresh.entity.Host;
-import com.vmware.borathon.vrefresh.entity.Task;
 import com.vmware.borathon.vrefresh.entity.VMTask;
 import com.vmware.borathon.vrefresh.repository.VMTaskRepository;
 import com.vmware.borathon.vrefresh.util.Util;
@@ -26,21 +24,21 @@ import com.vmware.borathon.vrefresh.util.Util;
 public class VMTaskServiceImpl implements VMTaskService {
 
     @Autowired
-    private VMTaskRepository vCenterRepository;
+    private VMTaskRepository vMTaskRepository;
 
     @Override
     public VMTask create(VMTask person) {
-        return vCenterRepository.save(person);
+        return vMTaskRepository.save(person);
     }
 
     @Override
     public List<VMTask> getAll() {
-        return vCenterRepository.findAll();
+        return vMTaskRepository.findAll();
     }
 
     @Override
     public VMTask findById(Long id) {
-        return vCenterRepository.findOne(id);
+        return vMTaskRepository.findOne(id);
     }
     
     @Override
