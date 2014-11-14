@@ -26,14 +26,14 @@ public class VMTaskSchedule implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	private String name;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Host host;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	private Task task;
 	private boolean recurring;
-	private String day; // MON, TUE, WED, THU, FRI, SAT, SUN
+	private String day; // SUN, MON, TUE, WED, THU, FRI, SAT
 	private String dayTime; // 2400
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	private VCenter vcenter;
 
 	public Long getId() {
 		return id;
@@ -41,6 +41,22 @@ public class VMTaskSchedule implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 	public Host getHost() {
@@ -75,14 +91,6 @@ public class VMTaskSchedule implements Serializable {
 		this.dayTime = dayTime;
 	}
 
-	public VCenter getVcenter() {
-		return vcenter;
-	}
-
-	public void setVcenter(VCenter vcenter) {
-		this.vcenter = vcenter;
-	}
-
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -107,7 +115,9 @@ public class VMTaskSchedule implements Serializable {
 
 	@Override
 	public String toString() {
-		return "demo.entity.Person[ id=" + id + " ]";
+		return "VMTaskSchedule [id=" + id + ", name=" + name + ", host=" + host
+				+ ", task=" + task + ", recurring=" + recurring + ", day="
+				+ day + ", dayTime=" + dayTime + "]";
 	}
 
 }

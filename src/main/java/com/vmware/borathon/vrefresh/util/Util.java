@@ -75,9 +75,9 @@ public class Util {
 			ssh.connect();
 
 			Result taskResult = ssh.exec(task);
-			scriptTask.setResult(taskResult.sysout);
-			scriptTask.setTaskStatus("Return code: " + taskResult.rc
-					+ ", error msg: " + taskResult.error_msg);
+			//scriptTask.setResult(taskResult.sysout);
+			//scriptTask.setTaskStatus("Return code: " + taskResult.rc
+			//		+ ", error msg: " + taskResult.error_msg);
 
 			virtualMachine.shutdown();
 			System.out.println("Guest shutdown");

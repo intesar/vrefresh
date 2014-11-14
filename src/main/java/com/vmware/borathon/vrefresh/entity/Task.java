@@ -24,11 +24,7 @@ public class Task implements Serializable {
 	private Long id;
 
 	private String name;
-	private String taskType;
-	private String scheduleDateTime;
 	private String script;
-	private String result;
-	private String taskStatus;
 
 	public Long getId() {
 		return id;
@@ -46,44 +42,12 @@ public class Task implements Serializable {
 		this.name = name;
 	}
 
-	public String getTaskType() {
-		return taskType;
-	}
-
-	public void setTaskType(String taskType) {
-		this.taskType = taskType;
-	}
-
-	public String getScheduleDateTime() {
-		return scheduleDateTime;
-	}
-
-	public void setScheduleDateTime(String scheduleDateTime) {
-		this.scheduleDateTime = scheduleDateTime;
-	}
-
 	public String getScript() {
 		return script;
 	}
 
 	public void setScript(String script) {
 		this.script = script;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
-	public String getTaskStatus() {
-		return taskStatus;
-	}
-
-	public void setTaskStatus(String taskStatus) {
-		this.taskStatus = taskStatus;
 	}
 
 	@Override
