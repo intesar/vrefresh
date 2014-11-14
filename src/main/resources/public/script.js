@@ -14,6 +14,12 @@ scotchApp.config(function ($routeProvider) {
                 controller: 'mainController'
             })
 
+            .when('/host-tasks/:id', {
+                templateUrl: 'pages/host-task.html',
+                controller: 'hostTaskController'
+            })
+            
+            
             // route for the about page
             .when('/vcenter', {
                 templateUrl: 'pages/vcenter.html',
@@ -115,6 +121,22 @@ scotchApp.controller('mainController', function ($scope, Host) {
     $scope.objs = Host.query();
     // create a message to display in our view
     $scope.message = 'Everyone come and see how good I look!';
+});
+
+
+
+scotchApp.controller('hostTaskController', function ($scope, $routeParams, Host, $window) {
+    $scope.message = 'Look! I am an vcenterEditController page.';
+
+    $scope.params = $routeParams;
+
+    $scope.loadHost = function () {
+        Host.get({id: $scope.params.id}, function (obj) {
+            $scope.obj = obj;
+        });
+    };
+
+    $scope.loadHost();
 });
 
 scotchApp.controller('vcenterController', function ($scope, VCenter) {

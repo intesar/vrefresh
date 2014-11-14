@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -39,6 +40,7 @@ public class Host implements Serializable {
 	private VCenter vcenter;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@JoinColumn(name="host_id")
 	private List<VMTask> tasks;
 
 	public Long getId() {
@@ -98,10 +100,14 @@ public class Host implements Serializable {
 	}
 
 	public List<VMTask> getTasks() {
+		for (VMTask t : tasks) {
+			t.setHost(null);
+		}
 		return tasks;
 	}
 
 	public void setTasks(List<VMTask> tasks) {
+		
 		this.tasks = tasks;
 	}
 

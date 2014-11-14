@@ -1,0 +1,42 @@
+<div class="panel panel-info" style="">
+	<div class="panel-heading">{{obj.name}}</div>
+	<div class="panel-body">
+		<table>
+			<tr>
+				<td>Type</td>
+				<td>{{obj.hostType}}</td>
+			</tr>
+			<tr>
+				<td>vCenter</td>
+				<td>{{obj.vcenter.host}}</td>
+			</tr>
+		</table>
+		<br />
+		<div class="table-responsive">
+			<table ui-jq="dataTable" class="table table-striped bg-white b-a">
+				<thead>
+					<tr>
+						<th style="width:200px">Script</th>
+						<th style="width:200px">Start Time</th>
+						<th style="width:200px">End Time</th>
+						<th style="width:100px">Status</th>
+						<th>Error</th>
+						<th>Result</th>
+						<!-- <th>Log</th>  -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="task in obj.tasks">
+						<td>{{task.task.name}}</a>
+						<td>{{task.startTime | date:'yyyy-MM-dd HH:mm:ss Z'}}</a>
+						<td>{{task.endTime | date:'yyyy-MM-dd HH:mm:ss Z'}}</a>
+						<td>{{task.status}}</td>
+						<td>{{task.error}}</td>
+						<td>{{task.result}}</td>
+						<!--  <td>{{task.log}}</td>  -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
