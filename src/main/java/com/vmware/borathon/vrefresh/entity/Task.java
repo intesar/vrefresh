@@ -6,6 +6,8 @@
 package com.vmware.borathon.vrefresh.entity;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Task implements Serializable {
 	private Long id;
 
 	private String name;
+	@Column(columnDefinition = "TEXT")
 	private String script;
 
 	public Long getId() {

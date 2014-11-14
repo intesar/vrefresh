@@ -1,5 +1,5 @@
 <div class="bg-light1 lter1 b-b1 wrapper-md">
-    <h2 class="m-n font-thin1 h4">Hosts 
+    <h2 class="m-n font-thin1 h4">Machine 
         <a class="pull-right" href="#/host/new"> <i class="fa fa-plus"></i></a>
     </h2>
 </div>
@@ -9,6 +9,7 @@
             <table ui-jq="dataTable" class="table table-striped bg-white b-a">
                 <thead>
                     <tr>
+                    	<th>Name</th>
                         <th>Host</th>
                         <th>Type</th>
                         <th>vCenter</th>
@@ -21,7 +22,10 @@
                     <tr ng-repeat="obj in objs">
                         <td>
                             <a class="nounderline"
-                               href="#/host/{{obj.id}}">{{obj.host}}</a>
+                               href="#/host/{{obj.id}}">{{obj.name}}</a>
+                        </td>
+                         <td>
+                            {{obj.host}}
                         </td>
                         <td>
                             {{obj.hostType}}

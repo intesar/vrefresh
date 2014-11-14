@@ -1,5 +1,5 @@
 <div class="bg-light1 lter1 b-b1 wrapper-md">
-    <h2 class="m-n font-thin1 h4">Hosts 
+    <h2 class="m-n font-thin1 h4">Schedule 
         <a class="pull-right" href="#/schedule/new"> <i class="fa fa-plus"></i></a>
     </h2>
 </div>
@@ -9,6 +9,7 @@
             <table ui-jq="dataTable" class="table table-striped bg-white b-a">
                 <thead>
                     <tr>
+                    	<th>Name</th>
                         <th>Host</th>
                         <th>Script</th>
                         <th>Recurring</th>
@@ -21,7 +22,10 @@
                     <tr ng-repeat="obj in objs">
                         <td>
                             <a class="nounderline"
-                               href="#/schedule/{{obj.id}}">{{obj.host.host}}</a>
+                               href="#/schedule/{{obj.id}}">{{obj.name}}</a>
+                        </td>
+                        <td>
+                            {{obj.host.host}}
                         </td>
                         <td>
                             {{obj.task.name}}
