@@ -64,10 +64,7 @@ scotchApp.config(function ($routeProvider) {
 });
 
 // create the controller and inject Angular's $scope
-scotchApp.controller('mainController', function ($scope) {
-    // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
-});
+
 
 angular.module('scotchApp')
         .provider('VCenter', function () {
@@ -111,6 +108,13 @@ angular.module('scotchApp')
                 }
             });
         }];
+});
+
+scotchApp.controller('mainController', function ($scope, Host) {
+    $scope.message = 'Look! I am an mainController page.';
+    $scope.objs = Host.query();
+    // create a message to display in our view
+    $scope.message = 'Everyone come and see how good I look!';
 });
 
 scotchApp.controller('vcenterController', function ($scope, VCenter) {

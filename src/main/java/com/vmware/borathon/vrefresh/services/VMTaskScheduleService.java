@@ -7,6 +7,7 @@ package com.vmware.borathon.vrefresh.services;
 
 import java.util.List;
 
+import com.vmware.borathon.vrefresh.entity.VMTask;
 import com.vmware.borathon.vrefresh.entity.VMTaskSchedule;
 
 /**
@@ -22,5 +23,7 @@ public interface VMTaskScheduleService {
     public VMTaskSchedule findById(Long id);
     
     public void processSchedule();
+    
+    void processAsync(VMTask task);
 
 }

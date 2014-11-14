@@ -1,5 +1,6 @@
-<div class="jumbotron text-center">
-	<h1>Home Page</h1>
-	
-	<p>{{ message }}</p>
+<div class="panel panel-info" ng-repeat="obj in objs" style="width:300px">
+	<div class="panel-heading">{{obj.name}}</div>
+	<div class="panel-body">
+		<a href="#/host-tasks">Tasks {{obj.tasks.length}}</a>
+	</div>
 </div>
