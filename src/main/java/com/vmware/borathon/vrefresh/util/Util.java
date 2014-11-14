@@ -99,6 +99,7 @@ public class Util {
 			ssh.connect();
 
 			Result taskResult = ssh.exec(task);
+<<<<<<< HEAD
 			logMsg += "\n" + taskResult.sysout;
 			logMsg += "\nReturn code: " + taskResult.rc + ", error msg: "
 					+ taskResult.error_msg;
@@ -106,6 +107,11 @@ public class Util {
 			vmTask.setResult(taskResult.sysout);
 			vmTask.setStatus("Return code: " + taskResult.rc
 					+ ", error msg: " + taskResult.error_msg);
+=======
+			//scriptTask.setResult(taskResult.sysout);
+			//scriptTask.setTaskStatus("Return code: " + taskResult.rc
+			//		+ ", error msg: " + taskResult.error_msg);
+>>>>>>> ui
 
 			virtualMachine.shutdown();
 			logMsg += "\nGuest shutdown";
