@@ -46,7 +46,7 @@ public class VMTaskScheduleServiceImpl implements VMTaskScheduleService {
         return vCenterRepository.findOne(id);
     }
     
-    @Scheduled(fixedRate = 1000 * 50)
+    @Scheduled(fixedRate = 1000 * 59)
     public void processSchedule() {
     	System.out.println("schedular fired");
     	
@@ -63,6 +63,7 @@ public class VMTaskScheduleServiceImpl implements VMTaskScheduleService {
     		task.setHost(l.getHost());
     		task.setTask(l.getTask());
     		service.process(task);
+    		service.create(task);
     	}
     }
 }

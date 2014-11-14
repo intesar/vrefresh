@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,11 +37,13 @@ public class VMTask implements Serializable {
 	private Task task;
 	private String status;
 	private boolean error;
+	@Column(columnDefinition="TEXT")
 	private String result;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startTime;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endTime;
+	@Column(columnDefinition="TEXT")
 	private String log;
 
 	public String getLog() {
